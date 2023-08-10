@@ -1,3 +1,6 @@
+using WalletApp.Application.Services;
+using WalletApp.Persistence.Contexts;
+
 namespace WalletApp.WebAPI
 {
     public class Program
@@ -7,6 +10,8 @@ namespace WalletApp.WebAPI
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.AddScoped<IWalletService, WalletService>();
+            builder.Services.AddSqlServer<WalletAppContext>(builder.Configuration.GetConnectionString("WalletApp"));
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

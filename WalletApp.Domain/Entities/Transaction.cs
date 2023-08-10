@@ -10,5 +10,7 @@ namespace WalletApp.Domain.Entities
         public bool IsPending { get; set; }
         public string? AuthorizedUser { get; set; }
         public string? Icon { get; set; }
+
+        public int AccountId { get; set; }
     }
 }
