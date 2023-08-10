@@ -1,4 +1,4 @@
-namespace WalletApp
+namespace WalletApp.WebAPI
 {
     public class WeatherForecast
     {
