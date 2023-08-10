@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using WalletApp.Application.Services;
 using WalletApp.Domain.Entities;
 
 namespace WalletApp.WebAPI.Controllers
@@ -7,14 +8,17 @@ namespace WalletApp.WebAPI.Controllers
     [Route("api/transactions")]
     public class TransactionController : ControllerBase
     {
-        public TransactionController()
+        private readonly IWalletService _walletService;
+
+        public TransactionController(IWalletService walletService)
         {
+            _walletService = walletService;
         }
 
         [HttpGet("{id}")]
-        public IEnumerable<Transaction> GetTransactionInfo(int id)
+        public Transaction GetTransactionInfo(int id)
         {
-            throw new NotImplementedException();
+            return _walletService.GetTransaction(id);
         }
     }
 }

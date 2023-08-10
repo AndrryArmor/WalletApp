@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using WalletApp.Application.Services;
 using WalletApp.Domain.Entities;
 
 namespace WalletApp.WebAPI.Controllers
@@ -7,20 +8,23 @@ namespace WalletApp.WebAPI.Controllers
     [Route("api/user-accounts")]
     public class UserAccountController : ControllerBase
     {
-        public UserAccountController()
+        private readonly IWalletService _walletService;
+
+        public UserAccountController(IWalletService walletService)
         {
+            _walletService = walletService;
         }
 
         [HttpGet("{id}")]
         public Account GetAccountInfo(int id)
         {
-            throw new NotImplementedException();
+            return _walletService.GetUserAccountInfo(id);
         }
 
         [HttpGet("{id}/transactions")]
         public IEnumerable<Transaction> GetLastTransactionsPreview(int id)
         {
-            throw new NotImplementedException();
+            return _walletService.GetUserLastTransactions(id);
         }
     }
 }
