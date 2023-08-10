@@ -10,24 +10,17 @@ namespace WalletApp.Persistence.Contexts
 {
     public class WalletAppContext : DbContext
     {
-        private readonly List<Account> _accounts;
         private readonly List<Transaction> _transactions;
 
         public WalletAppContext(DbContextOptions<WalletAppContext> options) : base(options)
         {
             var random = new Random();
-            _accounts = new List<Account>();
             _transactions = new List<Transaction>();
 
-            for (int i = 1; i <= 2; i++)
-            {
-                _accounts.Add(new Account { Id = i });
-            }
-
-            for (int i = 0; i < 50; i++)
+            for (int i = 0; i < 25; i++)
             {
                 var randomTransaction = Transaction.GetRandom();
-                randomTransaction.AccountId = _accounts[random.Next(_accounts.Count)].Id;
+                randomTransaction.AccountId = random.Next(2) + 1;
                 _transactions.Add(randomTransaction);
             }
 
@@ -38,16 +31,12 @@ namespace WalletApp.Persistence.Contexts
             }
         }
 
-        public DbSet<Account> Accounts { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Account>()
-                .HasData(_accounts);
             modelBuilder.Entity<Transaction>()
                 .HasData(_transactions);
         }
-
     }
 }

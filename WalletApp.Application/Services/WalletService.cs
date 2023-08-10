@@ -22,14 +22,11 @@ namespace WalletApp.Application.Services
             return _walletAppContext.Transactions.Single(t => t.Id == transactionId);
         }
 
-        public Account GetUserAccountInfo(int userAccountId)
-        {
-            return _walletAppContext.Accounts.Single(a => a.Id == userAccountId);
-        }
-
         public IEnumerable<Transaction> GetUserLastTransactions(int userAccountId, int count)
         {
-            return _walletAppContext.Accounts.Single(a => a.Id == userAccountId).Transactions.TakeLast(count);
+            return _walletAppContext.Transactions
+                .Where(t => t.AccountId == userAccountId)
+                .TakeLast(count);
         }
     }
 }

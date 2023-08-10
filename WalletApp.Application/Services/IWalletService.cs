@@ -9,7 +9,6 @@ namespace WalletApp.Application.Services
 {
     public interface IWalletService
     {
-        Account GetUserAccountInfo(int userAccountId);
         IEnumerable<Transaction> GetUserLastTransactions(int userAccountId, int count);
         Transaction GetTransaction(int transactionId);
     }
