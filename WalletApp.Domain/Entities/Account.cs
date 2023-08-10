@@ -7,6 +7,6 @@ namespace WalletApp.Domain.Entities
         public string? NoPaymentDueMessage { get; set; }
         public int DailyPoints { get; set; }
 
-        public List<Transaction> Transactions { get; set; } = new();
+        public ICollection<Transaction> Transactions { get; } = new List<Transaction>();
     }
 }

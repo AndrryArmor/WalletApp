@@ -24,7 +24,7 @@ namespace WalletApp.WebAPI.Controllers
         [HttpGet("{id}/transactions")]
         public IEnumerable<Transaction> GetLastTransactionsPreview(int id)
         {
-            return _walletService.GetUserLastTransactions(id);
+            return _walletService.GetUserLastTransactions(id, 10);
         }
     }
 }
