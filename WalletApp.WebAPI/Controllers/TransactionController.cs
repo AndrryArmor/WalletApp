@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using WalletApp.Domain.Entities;
 
 namespace WalletApp.WebAPI.Controllers
 {
@@ -11,7 +12,7 @@ namespace WalletApp.WebAPI.Controllers
         }
 
         [HttpGet("{id}")]
-        public IEnumerable<WeatherForecast> GetTransactionInfo(int id)
+        public IEnumerable<Transaction> GetTransactionInfo(int id)
         {
             throw new NotImplementedException();
         }
