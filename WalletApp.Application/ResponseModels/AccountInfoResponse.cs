@@ -1,4 +1,5 @@
 using System;
+using WalletApp.Application.ResponseModels;
 
 namespace WalletApp.Domain.Entities
 {
@@ -11,6 +12,6 @@ namespace WalletApp.Domain.Entities
         public string? NoPaymentDueMessage { get; set; }
         public string DailyPoints { get; set; } = string.Empty;
 
-        public IEnumerable<Transaction> Transactions { get; set; } = new List<Transaction>();
+        public IEnumerable<TransactionPreview> Transactions { get; set; } = new List<TransactionPreview>();
     }
 }

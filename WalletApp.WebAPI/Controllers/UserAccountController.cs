@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Globalization;
+using WalletApp.Application.ResponseModels;
 using WalletApp.Application.Services;
 using WalletApp.Domain.Entities;
 
@@ -32,6 +33,7 @@ namespace WalletApp.WebAPI.Controllers
                 NoPaymentDueMessage = $"You've paid your {monthName} balance.",
                 DailyPoints = _dailyPointsService.GetStringRepresentation(dailyPoints),
                 Transactions = _walletService.GetUserLastTransactions(id, 10)
+                    .Select(t => new TransactionPreview(t))
             };
         }
     }
