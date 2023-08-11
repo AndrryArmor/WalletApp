@@ -10,23 +10,24 @@ namespace WalletApp.Application.Services
 {
     public class WalletService : IWalletService
     {
-        private readonly WalletAppContext _walletAppContext;
+        private readonly WalletAppDbContext _walletAppDbContext;
 
-        public WalletService(WalletAppContext walletAppContext)
+        public WalletService(WalletAppDbContext walletAppDbContext)
         {
-            _walletAppContext = walletAppContext;
+            _walletAppDbContext = walletAppDbContext;
         }
 
         public Transaction GetTransaction(int transactionId)
         {
-            return _walletAppContext.Transactions.Single(t => t.Id == transactionId);
+            return _walletAppDbContext.Transactions.Single(t => t.Id == transactionId);
         }
 
         public IEnumerable<Transaction> GetUserLastTransactions(int userAccountId, int count)
         {
-            return _walletAppContext.Transactions
+            return _walletAppDbContext.Transactions
                 .Where(t => t.AccountId == userAccountId)
-                .TakeLast(count);
+                .OrderByDescending(t => t.Date)
+                .Take(count);
         }
     }
 }

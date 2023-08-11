@@ -1,5 +1,7 @@
 
 
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace WalletApp.Domain.Entities
 {
     public class Transaction : Entity
@@ -7,6 +9,7 @@ namespace WalletApp.Domain.Entities
         private static readonly Random _random = new Random();
 
         public TransactionType TransactionType { get; set; }
+        [Column(TypeName = "decimal(18,4)")]
         public decimal Sum { get; set; }
         public string Title { get; set; } = string.Empty;
         public string? Description { get; set; }

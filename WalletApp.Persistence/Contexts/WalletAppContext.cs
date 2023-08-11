@@ -8,11 +8,11 @@ using WalletApp.Domain.Entities;
 
 namespace WalletApp.Persistence.Contexts
 {
-    public class WalletAppContext : DbContext
+    public class WalletAppDbContext : DbContext
     {
         private readonly List<Transaction> _transactions;
 
-        public WalletAppContext(DbContextOptions<WalletAppContext> options) : base(options)
+        public WalletAppDbContext(DbContextOptions<WalletAppDbContext> options) : base(options)
         {
             var random = new Random();
             _transactions = new List<Transaction>();
@@ -27,7 +27,7 @@ namespace WalletApp.Persistence.Contexts
             _transactions = _transactions.OrderBy(t => t.Date).ToList();
             for (int i = 0; i < _transactions.Count; i++)
             {
-                _transactions[i].Id = i;
+                _transactions[i].Id = i + 1;
             }
         }
 
