@@ -9,7 +9,7 @@ namespace WalletApp.Domain.Entities
         public decimal CardBalance { get; set; }
         public decimal AvailableBalance => MaxLimit - CardBalance;
         public string? NoPaymentDueMessage { get; set; }
-        public int DailyPoints { get; set; }
+        public string DailyPoints { get; set; } = string.Empty;
 
         public IEnumerable<Transaction> Transactions { get; set; } = new List<Transaction>();
     }
