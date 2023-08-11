@@ -11,13 +11,26 @@ namespace WalletApp.Application.Services
         public float CalculateDailyPoints(DateTime date)
         {
             var daysOfSeason = GetDayOfSeason(date);
-            return CalculateDailyPointsInner(daysOfSeason);
+            List<float> dailyPointsList = new(daysOfSeason) { 2f, 3f };
+            for (int i = 2; i < daysOfSeason; i++)
+            {
+                dailyPointsList.Add(dailyPointsList[i - 2] + 0.6f * dailyPointsList[i - 1]);
+            }
+
+            return dailyPointsList.Last();
         }
 
         public string GetStringRepresentation(float dailyPoints)
         {
-            var thousands = Math.Round(dailyPoints / 1000, MidpointRounding.AwayFromZero);
-            return $"{thousands}K";
+            var postfix = string.Empty;
+            
+            while (dailyPoints >= 1000)
+            {
+                dailyPoints /= 1000;
+                postfix += "K";
+            }
+            var value = Math.Round(dailyPoints, MidpointRounding.AwayFromZero);
+            return $"{value}{postfix}";
         }
 
         private static int GetDayOfSeason(DateTime dateTime)
@@ -39,16 +52,6 @@ namespace WalletApp.Application.Services
             }
 
             return daysOfTheSeason;
-        }
-
-        public float CalculateDailyPointsInner(int daysOfSeason)
-        {
-            return daysOfSeason switch
-            {
-                1 => 2.0f,
-                2 => 3.0f,
-                _ => CalculateDailyPointsInner(daysOfSeason - 2) + 0.6f * CalculateDailyPointsInner(daysOfSeason - 1)
-            };
         }
     }
 }
