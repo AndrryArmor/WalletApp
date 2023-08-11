@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using WalletApp.Application.ResponseModels;
 using WalletApp.Application.Services;
 using WalletApp.Domain.Entities;
 
@@ -16,9 +17,10 @@ namespace WalletApp.WebAPI.Controllers
         }
 
         [HttpGet("{id}")]
-        public Transaction GetTransactionInfo(int id)
+        public TransactionDTO GetTransactionInfo(int id)
         {
-            return _walletService.GetTransaction(id);
+            var transaction = _walletService.GetTransaction(id);
+            return new TransactionDTO(transaction);
         }
     }
 }

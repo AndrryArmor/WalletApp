@@ -1,6 +1,7 @@
 
 
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Drawing;
 
 namespace WalletApp.Domain.Entities
 {
@@ -16,7 +17,6 @@ namespace WalletApp.Domain.Entities
         public DateTime Date { get; set; }
         public bool IsPending { get; set; }
         public string? AuthorizedUser { get; set; }
-        public string? Icon { get; set; }
 
         public int AccountId { get; set; }
 
@@ -32,8 +32,7 @@ namespace WalletApp.Domain.Entities
                 Description = _random.GetValueOrNull("Some description"),
                 Date = _random.NextDateTime(currentDateTime.AddDays(-30), currentDateTime),
                 IsPending = _random.NextBool(),
-                AuthorizedUser = _random.GetValueOrNull("Author"),
-                Icon = null
+                AuthorizedUser = _random.GetValueOrNull("Author")
             };
         }
     }

@@ -3,7 +3,7 @@ using WalletApp.Application.ResponseModels;
 
 namespace WalletApp.Domain.Entities
 {
-    public class AccountInfoResponse
+    public class GetAccountInfoResponse
     {
         public const int MaxLimit = 1500;
 

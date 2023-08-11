@@ -33,5 +33,6 @@ namespace WalletApp.Application.ResponseModels
         public string Sum { get; }
         public string FirstLineDescription { get; }
         public string SecondLineDescription { get; }
+        public byte[]? Icon { get; set; }
     }
 }

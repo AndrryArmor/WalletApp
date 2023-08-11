@@ -12,6 +12,7 @@ namespace WalletApp.WebAPI
             // Add services to the container.
             builder.Services.AddScoped<IWalletService, WalletService>();
             builder.Services.AddScoped<IDailyPointsService, DailyPointsService>();
+            builder.Services.AddScoped<IBitmapIconService, BitmapIconService>();
             builder.Services.AddSqlServer<WalletAppDbContext>(builder.Configuration.GetConnectionString("WalletApp"));
 
             builder.Services.AddControllers();

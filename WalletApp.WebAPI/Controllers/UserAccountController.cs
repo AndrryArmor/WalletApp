@@ -12,28 +12,44 @@ namespace WalletApp.WebAPI.Controllers
     {
         private readonly IWalletService _walletService;
         private readonly IDailyPointsService _dailyPointsService;
+        private readonly IBitmapIconService _bitmapIconService;
         private readonly Random _random;
 
-        public UserAccountController(IWalletService walletService, IDailyPointsService dailyPointsService)
+        public UserAccountController(IWalletService walletService, IDailyPointsService dailyPointsService, IBitmapIconService bitmapIconService)
         {
             _walletService = walletService;
             _dailyPointsService = dailyPointsService;
+            _bitmapIconService = bitmapIconService;
             _random = new Random();
         }
 
         [HttpGet("{id}")]
-        public AccountInfoResponse GetAccountInfo(int id)
+        public GetAccountInfoResponse GetAccountInfo(int id)
         {
             var currentDateTime = DateTime.Now;
             var monthName = currentDateTime.ToString("MMMM", CultureInfo.InvariantCulture);
             var dailyPoints = _dailyPointsService.CalculateDailyPoints(currentDateTime);
-            return new AccountInfoResponse()
+            var dailyPointsString = _dailyPointsService.GetStringRepresentation(dailyPoints);
+            var transactions = _walletService.GetUserLastTransactions(id, 10)
+                .Select(t =>
+                {
+                    var icon = _bitmapIconService.GetRandomBitmapIcon();
+                    using var memoryStream = new MemoryStream();
+                    icon.Save(memoryStream, System.Drawing.Imaging.ImageFormat.Jpeg);
+                    byte[] iconBytes = memoryStream.ToArray();
+
+                    return new TransactionPreview(t)
+                    {
+                        Icon = iconBytes
+                    };
+                });
+
+            return new GetAccountInfoResponse()
             {
-                CardBalance = _random.Next(AccountInfoResponse.MaxLimit),
+                CardBalance = _random.Next(GetAccountInfoResponse.MaxLimit),
                 NoPaymentDueMessage = $"You've paid your {monthName} balance.",
-                DailyPoints = _dailyPointsService.GetStringRepresentation(dailyPoints),
-                Transactions = _walletService.GetUserLastTransactions(id, 10)
-                    .Select(t => new TransactionPreview(t))
+                DailyPoints = dailyPointsString,
+                Transactions = transactions
             };
         }
     }
