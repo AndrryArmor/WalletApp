@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using WalletApp.Application.ResponseModels;
+using WalletApp.Application.DTOs;
 using WalletApp.Application.Services;
-using WalletApp.Domain.Entities;
 
 namespace WalletApp.WebAPI.Controllers
 {

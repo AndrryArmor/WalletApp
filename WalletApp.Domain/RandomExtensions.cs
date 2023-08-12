@@ -7,6 +7,11 @@
             return new DateTime(random.NextInt64(minDateTime.Ticks, maxDateTime.Ticks));
         }
 
+        public static decimal NextDecimal(this Random random)
+        {
+            return (decimal)random.NextDouble();
+        }
+
         public static bool NextBool(this Random random)
         {
             return random.Next(2) > 0;

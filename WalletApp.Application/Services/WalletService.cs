@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WalletApp.Domain.Entities;
+﻿using WalletApp.Domain.Entities;
 using WalletApp.Persistence.Contexts;
 
 namespace WalletApp.Application.Services
@@ -28,6 +23,13 @@ namespace WalletApp.Application.Services
                 .Where(t => t.AccountId == userAccountId)
                 .OrderByDescending(t => t.Date)
                 .Take(count);
+        }
+
+        public AccountInfo GetAccountInfo(int accountId)
+        {
+            var accountInfo = AccountInfo.GetRandomAccountInfo();
+            accountInfo.Id = accountId;
+            return accountInfo;
         }
     }
 }

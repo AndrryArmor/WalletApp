@@ -1,9 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WalletApp.Domain.Entities;
 
 namespace WalletApp.Persistence.Contexts
@@ -19,7 +14,7 @@ namespace WalletApp.Persistence.Contexts
 
             for (int i = 0; i < 25; i++)
             {
-                var randomTransaction = Transaction.GetRandom();
+                var randomTransaction = Transaction.GetRandomTransaction();
                 randomTransaction.AccountId = random.Next(2) + 1;
                 _transactions.Add(randomTransaction);
             }

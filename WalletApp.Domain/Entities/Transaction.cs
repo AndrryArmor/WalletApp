@@ -1,7 +1,4 @@
-
-
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Drawing;
 
 namespace WalletApp.Domain.Entities
 {
@@ -9,31 +6,68 @@ namespace WalletApp.Domain.Entities
     {
         private static readonly Random _random = new Random();
 
-        public TransactionType TransactionType { get; set; }
+        public Transaction(string title, decimal amount, TransactionType transactionType, DateTime date)
+        {
+            Title = title;
+            Amount = amount;
+            TransactionType = transactionType;
+            Date = date;
+        }
+
+        public string Title { get; set; }
         [Column(TypeName = "decimal(18,4)")]
-        public decimal Sum { get; set; }
-        public string Title { get; set; } = string.Empty;
-        public string? Description { get; set; }
+        public decimal Amount { get; set; }
+        public TransactionType TransactionType { get; set; }
         public DateTime Date { get; set; }
+        public string? Description { get; set; }
         public bool IsPending { get; set; }
         public string? AuthorizedUser { get; set; }
 
         public int AccountId { get; set; }
 
-        public static Transaction GetRandom()
+        public static Transaction GetRandomTransaction()
         {
-            var randomTransactionType = (TransactionType)_random.Next(2);
+            var transactionType = (TransactionType)_random.Next(2);
+            var transactionTitle = transactionType.ToString();
+            var transactionAmount = _random.NextDecimal() * 1000;
             var currentDateTime = DateTime.Now;
-            return new Transaction()
+            var transactionDate = _random.NextDateTime(currentDateTime.AddDays(-30), currentDateTime);
+            return new Transaction(transactionTitle, transactionAmount, transactionType, transactionDate)
             {
-                TransactionType = randomTransactionType,
-                Sum = _random.Next(1000),
-                Title = randomTransactionType.GetType().Name,
                 Description = _random.GetValueOrNull("Some description"),
-                Date = _random.NextDateTime(currentDateTime.AddDays(-30), currentDateTime),
                 IsPending = _random.NextBool(),
                 AuthorizedUser = _random.GetValueOrNull("Author")
             };
+        }
+
+        public string GetAmountString()
+        {
+            var prefix = TransactionType == TransactionType.Payment
+                ? "+"
+                : string.Empty;
+            return $"{prefix}${Amount:F}";
+        }
+
+        public string GetFirstLineDescription()
+        {
+            if (IsPending)
+            {
+                return Description is not null
+                    ? $"Pending - {Description}"
+                    : "Pending";
+            }
+            else
+            {
+                return Description ?? "";
+            }
+        }
+
+        public string GetSecondLineDescription()
+        {
+            var dateString = Date.ToShortDateString();
+            return AuthorizedUser is not null
+                ? $"{AuthorizedUser} - {dateString}"
+                : dateString;
         }
     }
 }
