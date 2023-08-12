@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using WalletApp.Application.DTOs;
 using WalletApp.Application.Services;
+using WalletApp.Application.Tools;
 
 namespace WalletApp.WebAPI.Controllers
 {
@@ -9,12 +10,10 @@ namespace WalletApp.WebAPI.Controllers
     public class UserAccountController : ControllerBase
     {
         private readonly IWalletService _walletService;
-        private readonly IBitmapIconService _bitmapIconService;
 
-        public UserAccountController(IWalletService walletService, IBitmapIconService bitmapIconService)
+        public UserAccountController(IWalletService walletService)
         {
             _walletService = walletService;
-            _bitmapIconService = bitmapIconService;
         }
 
         [HttpGet("{id}")]
@@ -24,14 +23,11 @@ namespace WalletApp.WebAPI.Controllers
             var transactions = _walletService.GetUserLastTransactions(id, 10)
                 .Select(t =>
                 {
-                    var icon = _bitmapIconService.GetRandomBitmapIcon();
-                    using var memoryStream = new MemoryStream();
-                    icon.Save(memoryStream, System.Drawing.Imaging.ImageFormat.Jpeg);
-                    byte[] iconBytes = memoryStream.ToArray();
-
+                    var icon = BitmapIconUtils.GetRandomBitmapIcon();
+                    var iconBytes = BitmapIconUtils.ConvertIconToBytes(icon);
                     return new TransactionPreviewDTO(t)
                     {
-                        Icon = iconBytes
+                        IconBytes = iconBytes
                     };
                 });
 

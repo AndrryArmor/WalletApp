@@ -12,6 +12,6 @@ namespace WalletApp.Application.DTOs
         {
         }
 
-        public byte[]? Icon { get; init; }
+        public byte[]? IconBytes { get; init; }
     }
 }
