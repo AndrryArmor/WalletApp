@@ -1,4 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
+using WalletApp.Application.DTOs;
+using WalletApp.Application.Services;
+using WalletApp.Application.Tools;
 
 namespace WalletApp.WebAPI.Controllers
 {
@@ -6,20 +9,29 @@ namespace WalletApp.WebAPI.Controllers
     [Route("api/user-accounts")]
     public class UserAccountController : ControllerBase
     {
-        public UserAccountController()
+        private readonly IWalletService _walletService;
+
+        public UserAccountController(IWalletService walletService)
         {
+            _walletService = walletService;
         }
 
         [HttpGet("{id}")]
-        public WeatherForecast GetAccountInfo(int id)
+        public AccountInfoDTO GetAccountInfo(int id)
         {
-            throw new NotImplementedException();
-        }
+            var accountInfo = _walletService.GetAccountInfo(id);
+            var transactions = _walletService.GetUserLastTransactions(id, 10)
+                .Select(t =>
+                {
+                    var icon = BitmapIconUtils.GetRandomBitmapIcon();
+                    var iconBytes = BitmapIconUtils.ConvertIconToBytes(icon);
+                    return new TransactionPreviewDTO(t)
+                    {
+                        IconBytes = iconBytes
+                    };
+                });
 
-        [HttpGet("{id}/transactions")]
-        public IEnumerable<WeatherForecast> GetLastTransactionsPreview(int id)
-        {
-            throw new NotImplementedException();
+            return new AccountInfoDTO(accountInfo, transactions);
         }
     }
 }

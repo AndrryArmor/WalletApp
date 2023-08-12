@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using WalletApp.Application.DTOs;
+using WalletApp.Application.Services;
 
 namespace WalletApp.WebAPI.Controllers
 {
@@ -6,14 +8,18 @@ namespace WalletApp.WebAPI.Controllers
     [Route("api/transactions")]
     public class TransactionController : ControllerBase
     {
-        public TransactionController()
+        private readonly IWalletService _walletService;
+
+        public TransactionController(IWalletService walletService)
         {
+            _walletService = walletService;
         }
 
         [HttpGet("{id}")]
-        public IEnumerable<WeatherForecast> GetTransactionInfo(int id)
+        public TransactionDTO GetTransactionInfo(int id)
         {
-            throw new NotImplementedException();
+            var transaction = _walletService.GetTransaction(id);
+            return new TransactionDTO(transaction);
         }
     }
 }
