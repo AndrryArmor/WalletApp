@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using WalletApp.Application.Services;
 using WalletApp.Persistence.Contexts;
 
@@ -11,7 +12,8 @@ namespace WalletApp.WebAPI
 
             // Add services to the container.
             builder.Services.AddScoped<IWalletService, WalletService>();
-            builder.Services.AddSqlServer<WalletAppDbContext>(builder.Configuration.GetConnectionString("WalletApp"));
+            builder.Services.AddDbContext<WalletAppDbContext>(options => 
+                options.UseNpgsql(builder.Configuration.GetConnectionString("WalletApp")));
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

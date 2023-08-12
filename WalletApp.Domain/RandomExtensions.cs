@@ -4,7 +4,7 @@
     {
         public static DateTime NextDateTime(this Random random, DateTime minDateTime, DateTime maxDateTime)
         {
-            return new DateTime(random.NextInt64(minDateTime.Ticks, maxDateTime.Ticks));
+            return new DateTime(random.NextInt64(minDateTime.Ticks, maxDateTime.Ticks), DateTimeKind.Utc);
         }
 
         public static double Nextdouble(this Random random)
