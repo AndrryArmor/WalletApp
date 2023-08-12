@@ -29,7 +29,7 @@ namespace WalletApp.Domain.Entities
             var transactionType = (TransactionType)_random.Next(2);
             var transactionTitle = transactionType.ToString();
             var transactionAmount = _random.Nextdouble() * 1000;
-            var currentDateTime = DateTime.Now;
+            var currentDateTime = DateTime.UtcNow;
             var transactionDate = _random.NextDateTime(currentDateTime.AddDays(-30), currentDateTime);
             return new Transaction(transactionTitle, transactionAmount, transactionType, transactionDate)
             {
