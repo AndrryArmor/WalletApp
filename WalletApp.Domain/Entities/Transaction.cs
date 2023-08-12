@@ -76,7 +76,7 @@ namespace WalletApp.Domain.Entities
             {
                 0 => "Today",
                 > 0 and < 7 => date.DayOfWeek.ToString(),
-                _ => date.ToShortDateString()
+                _ => date.ToString("dd.MM.yyyy")
             };
         }
     }

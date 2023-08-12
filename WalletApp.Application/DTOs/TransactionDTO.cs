@@ -2,10 +2,10 @@
 
 namespace WalletApp.Application.DTOs
 {
-    public record TransactionDTO(string Title, double Amount, TransactionType TransactionType, DateTime Date)
+    public record TransactionDTO(string Title, double Amount, string TransactionType, string DateTime)
     {
         public TransactionDTO(Transaction transaction)
-            : this(transaction.Title, transaction.Amount, transaction.TransactionType, transaction.Date)
+            : this(transaction.Title, transaction.Amount, transaction.TransactionType.ToString(), transaction.Date.ToString("dd.MM.yyyy, HH:mm"))
         {
             Description = transaction.Description;
             IsPending = transaction.IsPending;
