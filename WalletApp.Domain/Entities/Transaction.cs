@@ -64,10 +64,21 @@ namespace WalletApp.Domain.Entities
 
         public string GetSecondLineDescription()
         {
-            var dateString = Date.ToShortDateString();
+            var dateString = GetDataString(Date);
             return AuthorizedUser is not null
                 ? $"{AuthorizedUser} - {dateString}"
                 : dateString;
+        }
+
+        private static string GetDataString(DateTime date)
+        {
+            var daysDifference = (DateTime.Today - date).Days;
+            return daysDifference switch
+            {
+                0 => "Today",
+                > 0 and < 7 => date.DayOfWeek.ToString(),
+                _ => date.ToShortDateString()
+            };
         }
     }
 }
