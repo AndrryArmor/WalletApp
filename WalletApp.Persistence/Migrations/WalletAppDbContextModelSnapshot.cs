@@ -33,8 +33,8 @@ namespace WalletApp.Persistence.Migrations
                     b.Property<int>("AccountId")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("Amount")
-                        .HasColumnType("decimal(18,4)");
+                    b.Property<double>("Amount")
+                        .HasColumnType("float");
 
                     b.Property<string>("AuthorizedUser")
                         .HasColumnType("nvarchar(max)");
@@ -63,33 +63,30 @@ namespace WalletApp.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            AccountId = 1,
-                            Amount = 701.724059082979000m,
-                            AuthorizedUser = "Author",
-                            Date = new DateTime(2023, 7, 15, 16, 7, 40, 444, DateTimeKind.Unspecified).AddTicks(9311),
-                            Description = "Some description",
-                            IsPending = true,
-                            Title = "Credit",
-                            TransactionType = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            AccountId = 1,
-                            Amount = 770.49225892973000m,
-                            AuthorizedUser = "Author",
-                            Date = new DateTime(2023, 7, 16, 11, 44, 59, 333, DateTimeKind.Unspecified).AddTicks(9770),
+                            AccountId = 2,
+                            Amount = 431.55828949287343,
+                            Date = new DateTime(2023, 7, 14, 19, 53, 32, 923, DateTimeKind.Unspecified).AddTicks(4519),
                             IsPending = false,
                             Title = "Credit",
                             TransactionType = 1
                         },
                         new
                         {
-                            Id = 3,
+                            Id = 2,
                             AccountId = 2,
-                            Amount = 475.838481912631000m,
-                            AuthorizedUser = "Author",
-                            Date = new DateTime(2023, 7, 16, 12, 10, 4, 378, DateTimeKind.Unspecified).AddTicks(5604),
+                            Amount = 752.89816641440848,
+                            Date = new DateTime(2023, 7, 15, 0, 1, 30, 584, DateTimeKind.Unspecified).AddTicks(9551),
+                            IsPending = false,
+                            Title = "Payment",
+                            TransactionType = 0
+                        },
+                        new
+                        {
+                            Id = 3,
+                            AccountId = 1,
+                            Amount = 136.65546481626367,
+                            Date = new DateTime(2023, 7, 16, 12, 23, 25, 855, DateTimeKind.Unspecified).AddTicks(2796),
+                            Description = "Some description",
                             IsPending = false,
                             Title = "Credit",
                             TransactionType = 1
@@ -97,22 +94,22 @@ namespace WalletApp.Persistence.Migrations
                         new
                         {
                             Id = 4,
-                            AccountId = 2,
-                            Amount = 10.3361539263104000m,
+                            AccountId = 1,
+                            Amount = 614.78075003374215,
                             AuthorizedUser = "Author",
-                            Date = new DateTime(2023, 7, 17, 2, 54, 36, 354, DateTimeKind.Unspecified).AddTicks(540),
+                            Date = new DateTime(2023, 7, 17, 9, 53, 36, 624, DateTimeKind.Unspecified).AddTicks(3160),
                             Description = "Some description",
-                            IsPending = true,
+                            IsPending = false,
                             Title = "Payment",
                             TransactionType = 0
                         },
                         new
                         {
                             Id = 5,
-                            AccountId = 2,
-                            Amount = 739.854684070274000m,
-                            Date = new DateTime(2023, 7, 17, 5, 21, 23, 419, DateTimeKind.Unspecified).AddTicks(8844),
-                            IsPending = false,
+                            AccountId = 1,
+                            Amount = 286.5013193861725,
+                            Date = new DateTime(2023, 7, 17, 14, 52, 52, 456, DateTimeKind.Unspecified).AddTicks(6969),
+                            IsPending = true,
                             Title = "Payment",
                             TransactionType = 0
                         },
@@ -120,9 +117,10 @@ namespace WalletApp.Persistence.Migrations
                         {
                             Id = 6,
                             AccountId = 2,
-                            Amount = 739.21721131775000m,
+                            Amount = 742.22944112910591,
                             AuthorizedUser = "Author",
-                            Date = new DateTime(2023, 7, 18, 12, 51, 23, 386, DateTimeKind.Unspecified).AddTicks(2590),
+                            Date = new DateTime(2023, 7, 17, 17, 48, 26, 252, DateTimeKind.Unspecified).AddTicks(6477),
+                            Description = "Some description",
                             IsPending = true,
                             Title = "Payment",
                             TransactionType = 0
@@ -131,9 +129,20 @@ namespace WalletApp.Persistence.Migrations
                         {
                             Id = 7,
                             AccountId = 1,
-                            Amount = 769.254750156544000m,
+                            Amount = 410.35440122955958,
+                            Date = new DateTime(2023, 7, 17, 23, 57, 11, 885, DateTimeKind.Unspecified).AddTicks(4434),
+                            Description = "Some description",
+                            IsPending = true,
+                            Title = "Payment",
+                            TransactionType = 0
+                        },
+                        new
+                        {
+                            Id = 8,
+                            AccountId = 2,
+                            Amount = 310.14144808382503,
                             AuthorizedUser = "Author",
-                            Date = new DateTime(2023, 7, 18, 21, 50, 17, 592, DateTimeKind.Unspecified).AddTicks(6347),
+                            Date = new DateTime(2023, 7, 19, 9, 46, 35, 919, DateTimeKind.Unspecified).AddTicks(5094),
                             Description = "Some description",
                             IsPending = true,
                             Title = "Credit",
@@ -141,10 +150,11 @@ namespace WalletApp.Persistence.Migrations
                         },
                         new
                         {
-                            Id = 8,
+                            Id = 9,
                             AccountId = 2,
-                            Amount = 719.027479379268000m,
-                            Date = new DateTime(2023, 7, 21, 0, 27, 52, 352, DateTimeKind.Unspecified).AddTicks(8675),
+                            Amount = 169.92004286399754,
+                            AuthorizedUser = "Author",
+                            Date = new DateTime(2023, 7, 20, 10, 18, 13, 690, DateTimeKind.Unspecified).AddTicks(5536),
                             Description = "Some description",
                             IsPending = false,
                             Title = "Credit",
@@ -152,22 +162,12 @@ namespace WalletApp.Persistence.Migrations
                         },
                         new
                         {
-                            Id = 9,
-                            AccountId = 1,
-                            Amount = 926.680706265081000m,
-                            AuthorizedUser = "Author",
-                            Date = new DateTime(2023, 7, 22, 5, 31, 36, 705, DateTimeKind.Unspecified).AddTicks(7085),
-                            Description = "Some description",
-                            IsPending = false,
-                            Title = "Payment",
-                            TransactionType = 0
-                        },
-                        new
-                        {
                             Id = 10,
                             AccountId = 2,
-                            Amount = 912.341801508485000m,
-                            Date = new DateTime(2023, 7, 23, 5, 59, 13, 591, DateTimeKind.Unspecified).AddTicks(3145),
+                            Amount = 781.7909220134884,
+                            AuthorizedUser = "Author",
+                            Date = new DateTime(2023, 7, 21, 4, 22, 34, 744, DateTimeKind.Unspecified).AddTicks(3073),
+                            Description = "Some description",
                             IsPending = false,
                             Title = "Credit",
                             TransactionType = 1
@@ -175,11 +175,10 @@ namespace WalletApp.Persistence.Migrations
                         new
                         {
                             Id = 11,
-                            AccountId = 2,
-                            Amount = 86.1110153455057000m,
+                            AccountId = 1,
+                            Amount = 117.0641462311427,
                             AuthorizedUser = "Author",
-                            Date = new DateTime(2023, 7, 24, 6, 48, 38, 961, DateTimeKind.Unspecified).AddTicks(6897),
-                            Description = "Some description",
+                            Date = new DateTime(2023, 7, 21, 6, 0, 36, 168, DateTimeKind.Unspecified).AddTicks(4474),
                             IsPending = true,
                             Title = "Payment",
                             TransactionType = 0
@@ -187,10 +186,10 @@ namespace WalletApp.Persistence.Migrations
                         new
                         {
                             Id = 12,
-                            AccountId = 1,
-                            Amount = 289.483898339041000m,
+                            AccountId = 2,
+                            Amount = 259.37918399401462,
                             AuthorizedUser = "Author",
-                            Date = new DateTime(2023, 7, 25, 6, 59, 21, 870, DateTimeKind.Unspecified).AddTicks(3366),
+                            Date = new DateTime(2023, 7, 21, 8, 3, 5, 777, DateTimeKind.Unspecified).AddTicks(2441),
                             IsPending = true,
                             Title = "Credit",
                             TransactionType = 1
@@ -198,10 +197,10 @@ namespace WalletApp.Persistence.Migrations
                         new
                         {
                             Id = 13,
-                            AccountId = 1,
-                            Amount = 198.457637817378000m,
+                            AccountId = 2,
+                            Amount = 732.37177752013997,
                             AuthorizedUser = "Author",
-                            Date = new DateTime(2023, 7, 25, 14, 8, 2, 335, DateTimeKind.Unspecified).AddTicks(5405),
+                            Date = new DateTime(2023, 7, 23, 15, 36, 40, 683, DateTimeKind.Unspecified).AddTicks(9592),
                             IsPending = false,
                             Title = "Payment",
                             TransactionType = 0
@@ -209,19 +208,31 @@ namespace WalletApp.Persistence.Migrations
                         new
                         {
                             Id = 14,
-                            AccountId = 1,
-                            Amount = 828.357225772103000m,
-                            Date = new DateTime(2023, 7, 25, 14, 23, 18, 867, DateTimeKind.Unspecified).AddTicks(388),
+                            AccountId = 2,
+                            Amount = 145.90990570224128,
+                            Date = new DateTime(2023, 7, 25, 15, 53, 30, 2, DateTimeKind.Unspecified).AddTicks(1020),
+                            Description = "Some description",
                             IsPending = true,
-                            Title = "Payment",
-                            TransactionType = 0
+                            Title = "Credit",
+                            TransactionType = 1
                         },
                         new
                         {
                             Id = 15,
                             AccountId = 2,
-                            Amount = 795.235356744283000m,
-                            Date = new DateTime(2023, 7, 25, 23, 13, 25, 484, DateTimeKind.Unspecified).AddTicks(444),
+                            Amount = 798.73456107013328,
+                            Date = new DateTime(2023, 7, 26, 6, 37, 31, 643, DateTimeKind.Unspecified).AddTicks(2505),
+                            IsPending = false,
+                            Title = "Payment",
+                            TransactionType = 0
+                        },
+                        new
+                        {
+                            Id = 16,
+                            AccountId = 2,
+                            Amount = 457.52687722887708,
+                            AuthorizedUser = "Author",
+                            Date = new DateTime(2023, 7, 27, 0, 42, 15, 204, DateTimeKind.Unspecified).AddTicks(3344),
                             Description = "Some description",
                             IsPending = false,
                             Title = "Credit",
@@ -229,32 +240,22 @@ namespace WalletApp.Persistence.Migrations
                         },
                         new
                         {
-                            Id = 16,
-                            AccountId = 1,
-                            Amount = 967.140426729544000m,
-                            Date = new DateTime(2023, 7, 27, 5, 9, 40, 998, DateTimeKind.Unspecified).AddTicks(8919),
-                            IsPending = true,
-                            Title = "Payment",
-                            TransactionType = 0
-                        },
-                        new
-                        {
                             Id = 17,
-                            AccountId = 2,
-                            Amount = 893.595142645919000m,
+                            AccountId = 1,
+                            Amount = 293.00126427052106,
                             AuthorizedUser = "Author",
-                            Date = new DateTime(2023, 7, 29, 8, 29, 5, 982, DateTimeKind.Unspecified).AddTicks(6807),
+                            Date = new DateTime(2023, 7, 29, 17, 15, 25, 804, DateTimeKind.Unspecified).AddTicks(4360),
                             Description = "Some description",
                             IsPending = true,
-                            Title = "Payment",
-                            TransactionType = 0
+                            Title = "Credit",
+                            TransactionType = 1
                         },
                         new
                         {
                             Id = 18,
-                            AccountId = 2,
-                            Amount = 865.451526170548000m,
-                            Date = new DateTime(2023, 7, 30, 5, 0, 42, 244, DateTimeKind.Unspecified).AddTicks(4679),
+                            AccountId = 1,
+                            Amount = 834.41976149839206,
+                            Date = new DateTime(2023, 7, 30, 6, 20, 36, 517, DateTimeKind.Unspecified).AddTicks(3236),
                             Description = "Some description",
                             IsPending = true,
                             Title = "Payment",
@@ -263,12 +264,11 @@ namespace WalletApp.Persistence.Migrations
                         new
                         {
                             Id = 19,
-                            AccountId = 1,
-                            Amount = 344.157441054058000m,
-                            AuthorizedUser = "Author",
-                            Date = new DateTime(2023, 8, 2, 16, 15, 54, 75, DateTimeKind.Unspecified).AddTicks(5310),
+                            AccountId = 2,
+                            Amount = 480.8097543924107,
+                            Date = new DateTime(2023, 7, 30, 7, 39, 14, 947, DateTimeKind.Unspecified).AddTicks(8521),
                             Description = "Some description",
-                            IsPending = true,
+                            IsPending = false,
                             Title = "Credit",
                             TransactionType = 1
                         },
@@ -276,61 +276,65 @@ namespace WalletApp.Persistence.Migrations
                         {
                             Id = 20,
                             AccountId = 1,
-                            Amount = 222.238754650841000m,
-                            AuthorizedUser = "Author",
-                            Date = new DateTime(2023, 8, 7, 2, 2, 34, 449, DateTimeKind.Unspecified).AddTicks(1004),
-                            IsPending = false,
-                            Title = "Payment",
-                            TransactionType = 0
+                            Amount = 685.38987353245489,
+                            Date = new DateTime(2023, 7, 31, 1, 24, 11, 934, DateTimeKind.Unspecified).AddTicks(9608),
+                            IsPending = true,
+                            Title = "Credit",
+                            TransactionType = 1
                         },
                         new
                         {
                             Id = 21,
-                            AccountId = 2,
-                            Amount = 789.570397969155000m,
-                            Date = new DateTime(2023, 8, 7, 4, 9, 12, 507, DateTimeKind.Unspecified).AddTicks(4498),
-                            IsPending = false,
+                            AccountId = 1,
+                            Amount = 577.78645521163958,
+                            AuthorizedUser = "Author",
+                            Date = new DateTime(2023, 8, 1, 0, 40, 55, 556, DateTimeKind.Unspecified).AddTicks(2356),
+                            IsPending = true,
                             Title = "Credit",
                             TransactionType = 1
                         },
                         new
                         {
                             Id = 22,
-                            AccountId = 1,
-                            Amount = 36.3297257028562000m,
-                            Date = new DateTime(2023, 8, 7, 7, 53, 37, 358, DateTimeKind.Unspecified).AddTicks(8252),
+                            AccountId = 2,
+                            Amount = 366.95248323106352,
+                            AuthorizedUser = "Author",
+                            Date = new DateTime(2023, 8, 2, 6, 45, 57, 939, DateTimeKind.Unspecified).AddTicks(2677),
+                            Description = "Some description",
                             IsPending = false,
-                            Title = "Payment",
-                            TransactionType = 0
+                            Title = "Credit",
+                            TransactionType = 1
                         },
                         new
                         {
                             Id = 23,
-                            AccountId = 2,
-                            Amount = 801.850138524724000m,
-                            Date = new DateTime(2023, 8, 7, 15, 54, 39, 183, DateTimeKind.Unspecified).AddTicks(7940),
-                            IsPending = true,
+                            AccountId = 1,
+                            Amount = 447.22053162162047,
+                            AuthorizedUser = "Author",
+                            Date = new DateTime(2023, 8, 6, 0, 26, 43, 889, DateTimeKind.Unspecified).AddTicks(9766),
+                            Description = "Some description",
+                            IsPending = false,
                             Title = "Credit",
                             TransactionType = 1
                         },
                         new
                         {
                             Id = 24,
-                            AccountId = 2,
-                            Amount = 28.2418998316961000m,
+                            AccountId = 1,
+                            Amount = 743.30673175927404,
                             AuthorizedUser = "Author",
-                            Date = new DateTime(2023, 8, 8, 22, 46, 3, 760, DateTimeKind.Unspecified).AddTicks(3045),
+                            Date = new DateTime(2023, 8, 7, 11, 33, 20, 303, DateTimeKind.Unspecified).AddTicks(8303),
                             Description = "Some description",
-                            IsPending = true,
-                            Title = "Credit",
-                            TransactionType = 1
+                            IsPending = false,
+                            Title = "Payment",
+                            TransactionType = 0
                         },
                         new
                         {
                             Id = 25,
                             AccountId = 1,
-                            Amount = 547.963378377792000m,
-                            Date = new DateTime(2023, 8, 11, 0, 10, 23, 924, DateTimeKind.Unspecified).AddTicks(1574),
+                            Amount = 701.90706983360315,
+                            Date = new DateTime(2023, 8, 12, 12, 9, 1, 27, DateTimeKind.Unspecified).AddTicks(5258),
                             IsPending = false,
                             Title = "Credit",
                             TransactionType = 1

@@ -6,7 +6,7 @@ namespace WalletApp.Domain.Entities
     {
         private static readonly Random _random = new Random();
 
-        public Transaction(string title, decimal amount, TransactionType transactionType, DateTime date)
+        public Transaction(string title, double amount, TransactionType transactionType, DateTime date)
         {
             Title = title;
             Amount = amount;
@@ -15,8 +15,7 @@ namespace WalletApp.Domain.Entities
         }
 
         public string Title { get; set; }
-        [Column(TypeName = "decimal(18,4)")]
-        public decimal Amount { get; set; }
+        public double Amount { get; set; }
         public TransactionType TransactionType { get; set; }
         public DateTime Date { get; set; }
         public string? Description { get; set; }
@@ -29,7 +28,7 @@ namespace WalletApp.Domain.Entities
         {
             var transactionType = (TransactionType)_random.Next(2);
             var transactionTitle = transactionType.ToString();
-            var transactionAmount = _random.NextDecimal() * 1000;
+            var transactionAmount = _random.Nextdouble() * 1000;
             var currentDateTime = DateTime.Now;
             var transactionDate = _random.NextDateTime(currentDateTime.AddDays(-30), currentDateTime);
             return new Transaction(transactionTitle, transactionAmount, transactionType, transactionDate)

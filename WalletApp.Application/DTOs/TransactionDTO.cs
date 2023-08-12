@@ -2,7 +2,7 @@
 
 namespace WalletApp.Application.DTOs
 {
-    public record TransactionDTO(string Title, decimal Amount, TransactionType TransactionType, DateTime Date)
+    public record TransactionDTO(string Title, double Amount, TransactionType TransactionType, DateTime Date)
     {
         public TransactionDTO(Transaction transaction)
             : this(transaction.Title, transaction.Amount, transaction.TransactionType, transaction.Date)

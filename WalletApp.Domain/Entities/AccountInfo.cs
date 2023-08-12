@@ -9,19 +9,19 @@ namespace WalletApp.Domain.Entities
 
         private static readonly Random _random = new Random();
 
-        public AccountInfo(decimal cardBalance)
+        public AccountInfo(double cardBalance)
         {
             CardBalance = cardBalance;
         }
 
-        public decimal CardBalance { get; set; }
-        public decimal AvailableBalance => MaxLimit - CardBalance;
+        public double CardBalance { get; set; }
+        public double AvailableBalance => MaxLimit - CardBalance;
         public float DailyPoints => CalculateDailyPoints();
         public string PaymentDueStatus => GetPaymentDueStatus();
 
         public static AccountInfo GetRandomAccountInfo()
         {
-            return new AccountInfo(_random.NextDecimal() * MaxLimit);
+            return new AccountInfo(_random.Nextdouble() * MaxLimit);
         }
 
         public string GetDailyPointsKString()

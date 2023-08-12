@@ -7,9 +7,9 @@
             return new DateTime(random.NextInt64(minDateTime.Ticks, maxDateTime.Ticks));
         }
 
-        public static decimal NextDecimal(this Random random)
+        public static double Nextdouble(this Random random)
         {
-            return (decimal)random.NextDouble();
+            return (double)random.NextDouble();
         }
 
         public static bool NextBool(this Random random)
